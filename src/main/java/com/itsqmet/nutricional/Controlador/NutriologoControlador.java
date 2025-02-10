@@ -37,32 +37,32 @@ public class NutriologoControlador {
         List<Nutriologo> nutriologo = nutriologoServicio.buscarNutrologoNombre(buscarNutrologo);
         model.addAttribute("buscarNutrologo", buscarNutrologo);
         model.addAttribute("nutrologo", nutriologo);
-        return "listas/listaPaciente";
+        return "listas/listaNutriologo";
     }
 
     @GetMapping("/formularioNutrologo")
     public String mostrarFormurario(Model model){
         model.addAttribute("nutriologo", new Nutriologo());
-        return "datosguardados/formulario";
+        return "formularioNutri/NutriologoFormulario";
     }
 
     @PostMapping("/registrarNutriologo")
     public String insertarNutriologo(Nutriologo nutriologo){
         nutriologoServicio.guardarNutrologo(nutriologo);
-        return "redirect:/paciente";
+        return "redirect:/nutrologo";
     }
 
     @GetMapping("/actualizarNutriologo/{id}")
     public String editarNutriologo(@PathVariable Long id, Model model){
         Optional<Nutriologo> nutriologo = nutriologoServicio.buscarNutrologoId(id);
         model.addAttribute("nutriologo", nutriologo);
-        return "datosguardados/formulario";
+        return "formularioNutri/NutriologoFormulario";
     }
 
     @GetMapping("/eliminarNutriologo/{id}")
     public String eliminarNutriologo(@PathVariable Long id){
         nutriologoServicio.buscarNutrologoId(id);
-        return "redirect:/paciente";
+        return "redirect:/nutrologo";
     }
 
     //@GetMapping("/autores/pdf")
