@@ -1,0 +1,174 @@
+body.nutrivida-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+    padding-top: 80px;
+}
+
+body.nutrivida-body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/nutricion2.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+nav.nutrivida-nav {
+    background-color: #28a745;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nutrivida-navbar-brand, .nutrivida-nav-link {
+    color: white !important;
+}
+
+.nutrivida-navbar-nav .nutrivida-nav-item:hover .nutrivida-nav-link {
+    color: #ffdf00 !important;
+}
+
+.nutrivida-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nutrivida-card-body {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+h2.nutrivida-h2 {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nutrivida-form-label {
+    font-weight: bold;
+}
+
+footer.nutrivida-footer {
+    background: linear-gradient(90deg, #28a745, #00b300);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .nutrivida-card-body {
+        padding: 20px;
+    }
+
+    h2.nutrivida-h2 {
+        font-size: 1.5rem;
+    }
+
+    footer.nutrivida-footer {
+        padding: 10px;
+    }
+}
+
+.nutrivida-container {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    margin: 50px auto; /* Centra el contenedor y agrega margen superior */
+    align-items: stretch; /* Hace que los hijos ocupen toda la altura disponible */
+}
+
+.nutrivida-image {
+    flex: 1;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.nutrivida-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
+    display: block;
+}
+
+.nutrivida-form-container {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nutrivida-h2_1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.nutrivida-form-container input,
+.nutrivida-form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.nutrivida-form-container input:focus,
+.nutrivida-form-container textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.nutrivida-form-container textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.nutrivida-form-container button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nutrivida-form-container button:hover {
+    background-color: #45a049;
+}
+
+.nutrivida-form-container button:active {
+    transform: scale(0.98);
+}
+
+span.nutrivida-error {
+    color: red;
+    font-size: 12px;
+}

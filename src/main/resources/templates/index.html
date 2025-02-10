@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/Css/estilosnav.css}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+    <title> Página de Nutricionista</title>
+
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+<nav id="navbar" class="navbar">
+    <h1 class="logo">
+        <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas" class="logo-img">
+        NutriRecetas
+    </h1>
+    <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a th:href="@{/nosotros}">Nosotros</a></li>
+        <li><a th:href="@{/formularioConsulta}">Consultas</a></li>
+        <li><a th:href="@{/nutriologo}">Registro Nutriologo</a></li>
+    </ul>
+
+    <a th:href="@{/formulario}" class="mt-6 bg-green-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-600">
+        Registrate
+    </a>
+</nav>
+
+<header class="relative w-full h-screen flex items-center justify-center text-center text-white">
+    <img th:src="@{img/imagen7.jpg}" alt="Imagen de comida saludable" class="w-full h-full object-cover">
+    <div class="absolute bg-black bg-opacity-50 w-full h-full flex flex-col items-center justify-center p-6">
+        <h2 class="text-5xl font-bold">Descubre y Comparte Recetas Saludables</h2>
+        <p class="mt-4 text-lg">Mejora tu alimentación con recetas de un nutricionista profesional.</p>
+        <a th:href="@{/recetas}" class="mt-6 bg-green-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-600">
+            Explorar Recetas
+        </a>
+    </div>
+</header>
+
+<section class="p-12">
+    <h3 class="text-4xl font-semibold text-center mb-8">Últimas Recetas</h3>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="img/imagen3.jpg" alt="Imagen de comida saludable" class="w-full h-49 object-cover">
+            <div class="p-4 flex flex-col items-center">
+                <h4 class="text-2xl font-semibold">Ensalada Detox</h4>
+                <p class="text-gray-600">Fresca y nutritiva para limpiar tu organismo.</p>
+                <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded" onclick="openModal('modal1')">Ver más</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="img/imagen4.jpg" alt="Batido Energético" class="w-full h-49 object-cover">
+            <div class="p-4 flex flex-col items-center">
+                <h4 class="text-2xl font-semibold">Batido Energético</h4>
+                <p class="text-gray-600">Ideal para después del ejercicio.</p>
+                <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded" onclick="openModal('modal2')">Ver más</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img src="img/imagen6.jpg" alt="Tostadas de Aguacate" class="w-full h-49 object-cover">
+            <div class="p-4 flex flex-col items-center">
+                <h4 class="text-2xl font-semibold">Tostadas de Aguacate</h4>
+                <p class="text-gray-600">Energía y sabor en cada bocado.</p>
+                <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded" onclick="openModal('modal3')">Ver más</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modales -->
+<div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+        <h4 class="text-xl font-semibold text-center">Ensalada Detox</h4>
+        <p class="mt-2 text-center">Una deliciosa mezcla de vegetales frescos con aderezo saludable.</p>
+        <h5 class="mt-4 font-semibold">Ingredientes:</h5>
+        <ul class="text-gray-600 list-disc text-center">
+            <li>Lechuga</li>
+            <li>Pepino</li>
+            <li>Zanahoria</li>
+            <li>Aguacate</li>
+            <li>Aderezo de limón</li>
+        </ul>
+        <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal1')">Cerrar</button>
+    </div>
+</div>
+
+<div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+        <h4 class="text-xl font-semibold text-center">Batido Energético</h4>
+        <p class="mt-2 text-center">Un batido rico en proteínas y antioxidantes para recargar energía.</p>
+        <h5 class="mt-4 font-semibold">Ingredientes:</h5>
+        <ul class="text-gray-600 list-disc text-center">
+            <li>Plátano</li>
+            <li>Fresas</li>
+            <li>Leche de almendras</li>
+            <li>Avena</li>
+            <li>Miel</li>
+        </ul>
+        <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal2')">Cerrar</button>
+    </div>
+</div>
+
+<div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+        <h4 class="text-xl font-semibold text-center">Tostadas de Aguacate</h4>
+        <p class="mt-2 text-center">Pan integral con aguacate, tomate y un toque de limón.</p>
+        <h5 class="mt-4 font-semibold">Ingredientes:</h5>
+        <ul class="text-gray-600 list-disc text-center">
+            <li>Pan integral</li>
+            <li>Aguacate</li>
+            <li>Tomate</li>
+            <li>Limón</li>
+            <li>Sal y pimienta</li>
+        </ul>
+        <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal3')">Cerrar</button>
+    </div>
+</div>
+
+
+<section class="bg-green-500 text-white text-center p-8 rounded-xl shadow-lg max-w-[600px] h-[300px] mx-auto flex flex-col justify-center items-center">
+    <h3 class="text-3xl font-semibold">¿Quieres un seguimiento profesional?</h3>
+    <p class="mt-4 text-lg text-white">Sube tu dieta para monitorear cuántas calorías consumes al día.</p>
+    <a th:href="@{/formularioDieta}" class="mt-6 inline-block bg-white text-green-600 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200 transition">
+        Subir Dieta
+    </a>
+</section>
+
+
+
+
+<footer class="footer rounded-lg shadow-sm dark:bg-gray-900 m-4">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <img th:src="@{/img/Logo.png}" class="h-8" alt="NutriRecetas Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NutriRecetas</span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <li><a href="#" class="hover:underline me-4 md:me-6">Inicio</a></li>
+                <li><a href="#" class="hover:underline me-4 md:me-6">Recetas</a></li>
+                <li><a href="#" class="hover:underline me-4 md:me-6">Consejos</a></li>
+            </ul>
+        </div>
+        <hr class="my-6 border-gray-300 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © 2025 <a href="#" class="hover:underline">NutriRecetas™</a>. Todos los derechos reservados.
+        </span>
+    </div>
+</footer>
+
+
+
+<script th:src="@{/js/navjs.js}"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

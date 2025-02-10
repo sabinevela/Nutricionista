@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" th:href="@{Css/estilosConsulta.css}">
+  <title>Formulario de Consulta</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fas fa-leaf"></i> NutriReceta
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/servicios">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/contacto">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/nosotros">Nosotros</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5 pt-5">
+  <div class="d-flex">
+    <div class="image-section" style="flex: 1; padding: 30px;">
+      <img src="/img/comida.jpg" alt="Imagen Nutrición" class="img-fluid rounded" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <div class="form-section" style="flex: 1; padding: 30px;">
+      <div class="card shadow-lg border-light rounded">
+        <div class="card-body p-5">
+          <h2 class="text-center text-success mb-4">Formulario de Consulta</h2>
+          <form th:action="@{/registrarConsulta}" method="post" th:object="${consulta}">
+
+            <div class="col-md-6">
+              <label for="id" class="form-label"></label>
+              <input type="text" class="form-control" id="id" th:field="*{id}" hidden>
+            </div>
+
+            <div class="mb-3">
+              <label for="fecha" class="form-label">Fecha de la Consulta:</label>
+              <input type="date" class="form-control" id="fecha" th:field="*{fecha}" />
+              <div class="invalid-feedback" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></div>
+            </div>
+
+            <div class="mb-3">
+              <label for="observaciones" class="form-label">Observaciones:</label>
+              <textarea class="form-control" id="observaciones" th:field="*{observaciones}"></textarea>
+              <div class="invalid-feedback" th:if="${#fields.hasErrors('observaciones')}" th:errors="*{observaciones}"></div>
+            </div>
+
+            <select id="paciente" th:field="*{paciente.id}" class="form-select">
+              <option value="">Seleccione un paciente</option>
+              <option th:each="paciente : ${pacientes}"
+                      th:value="${paciente.id}"
+                      th:text="${paciente.nombre}"></option>
+            </select>
+
+            <select id="nutrologo" th:field="*{nutrologo.id}" class="form-select">
+              <option value="">Seleccione un paciente</option>
+              <option th:each="nutrologo : ${nutrologo}"
+                      th:value="${nutrologo.id}"
+                      th:text="${nutrologo.nombre}"></option>
+            </select>
+
+            <br>
+
+            <button type="submit" class="btn btn-success w-100">Guardar Consulta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer text-center py-4">
+  <p>&copy; 2025 NutriReceta. Todos los derechos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
