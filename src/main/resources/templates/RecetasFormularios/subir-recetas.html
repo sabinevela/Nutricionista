@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Receta - NutriRecetas</title>
+    <link rel="stylesheet" th:href="@{/css/estilosRecetaGuardar.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <h1>NutriRecetas</h1>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/recetas">Recetas</a></li>
+            <li><a href="/recetas/subir">Subir Receta</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <section class="intro">
+        <h2>¡Comparte tu mejor receta saludable!</h2>
+        <p>NutriRecetas es el lugar donde la buena alimentación se encuentra con la creatividad.
+            Comparte tus platillos saludables y ayuda a otros a llevar una vida más sana.</p>
+    </section>
+
+    <div class="contenedor-flex">
+        <form class="formulario" th:action="@{/recetas/guardar}" method="post" enctype="multipart/form-data">
+            <h3>Sube tu receta</h3>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="ingredientes">Ingredientes:</label>
+            <textarea id="ingredientes" name="ingredientes" required></textarea>
+
+            <label for="pasos">Pasos:</label>
+            <textarea id="pasos" name="pasos" required></textarea>
+
+            <label for="imagen">Imagen:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+
+            <button type="submit">Subir Receta</button>
+        </form>
+
+        <div class="imagen-lateral">
+            <img th:src="@{/img/recetaimg.jpg}" alt="Receta saludable">
+        </div>
+    </div>
+
+    <a class="volver" href="/recetas">Volver a Recetas</a>
+</main>
+
+<footer>
+    <p>&copy; 2025 NutriRecetas - Alimentación saludable para todos</p>
+</footer>
+</body>
+</html>

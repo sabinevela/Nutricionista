@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetas - NutriRecetas</title>
+  <link rel="stylesheet" th:href="@{/css/estilosRecetas.css}">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas">
+    <h1>NutriRecetas</h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/recetas">Recetas</a></li>
+      <li><a href="/recetas/subir">Subir Receta</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section class="introduccion">
+    <h2>¿Por qué es importante una alimentación saludable?</h2>
+    <p>Comer bien mejora tu salud, aumenta tu energía y fortalece tu sistema inmunológico. En NutriRecetas, te ofrecemos opciones deliciosas y saludables para que disfrutes sin culpa.</p>
+    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
+    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
+    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
+    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
+    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
+  </section>
+  <section class="recetas">
+    <h2>Recetas Disponibles</h2>
+    <div class="lista-recetas">
+      <article th:each="receta : ${recetas}" class="receta">
+        <img th:src="@{/recetas/imagen/{id}(id=${receta.id})}" alt="Imagen de la receta">
+        <h3 th:text="${receta.titulo}"></h3>
+        <button th:onclick="|mostrarModal('modal-${receta.id}')|">Ver Receta</button>
+      </article>
+    </div>
+    <a th:href="@{/recetas/subir}">Subir Receta</a>
+    <div class="text-center mt-3">
+      <a th:href="@{/recetas/listaRecetas}" class="btn btn-link text-success">Ver lista de Recetas</a>
+    </div>
+  </section>
+</main>
+<div th:each="receta : ${recetas}" th:id="'modal-' + ${receta.id}" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" th:onclick="|cerrarModal('modal-${receta.id}')|">&times;</span>
+    <h2 th:text="${receta.titulo}"></h2>
+    <p th:text="${receta.descripcion}"></p>
+    <h3>Ingredientes</h3>
+    <ul>
+      <li th:each="ingrediente : ${#strings.arraySplit(receta.ingredientes, ',')}" th:text="${ingrediente}"></li>
+    </ul>
+    <h3>Pasos</h3>
+    <ol>
+      <li th:each="paso : ${#strings.arraySplit(receta.pasos, '. ')}" th:text="${paso}"></li>
+    </ol>
+  </div>
+</div>
+<footer>
+  <p>&copy; 2025 NutriRecetas - Comer sano es vivir mejor.</p>
+</footer>
+<script>
+  function mostrarModal(id) {
+    document.getElementById(id).style.display = "block";
+  }
+  function cerrarModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+  window.onclick = function(event) {
+    const modales = document.getElementsByClassName("modal");
+    for (let modal of modales) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  };
+</script>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+  .modal-contenido {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .cerrar {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .zoom-img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  .zoom-img:hover {
+    transform: scale(1.1);
+  }
+</style>
+</body>
+</html>

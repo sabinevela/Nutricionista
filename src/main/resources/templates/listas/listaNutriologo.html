@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Nutriólogos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/1600x900/?health,medical');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-green-100 text-gray-900">
+
+<div class="container mx-auto mt-10 p-8 bg-white bg-opacity-90 shadow-2xl rounded-xl max-w-7xl">
+    <h2 class="text-center text-3xl font-bold text-green-600 mb-6">Lista de Nutriólogos</h2>
+
+    <form th:action="@{/nutrologo}" method="get" class="mb-6">
+        <div class="flex items-center space-x-2">
+            <input type="text" name="buscarNutrologo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Buscar nutriólogos" th:value="${buscarNutrologo}">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Buscar</button>
+        </div>
+    </form>
+
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300 rounded-lg shadow-lg">
+            <thead class="bg-green-700 text-white">
+            <tr>
+                <th class="p-4">Nombre</th>
+                <th class="p-4">Cédula Profesional</th>
+                <th class="p-4">Fecha de Nacimiento</th>
+                <th class="p-4">Teléfono</th>
+                <th class="p-4">Email</th>
+                <th class="p-4">Especialidad</th>
+                <th class="p-4">Años de Experiencia</th>
+                <th class="p-4">Consultorio</th>
+                <th class="p-4">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="nutriologo: ${nutriologos}" class="odd:bg-gray-100 even:bg-white border-b hover:bg-gray-200 transition">
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.nombre}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.cedula}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.fechaNacimiento}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.telefono}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.email}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.especialidad}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.experiencia}"></td>
+                <td class="p-4 font-bold text-black" th:text="${nutriologo.consultorio}"></td>
+                <td class="p-4 flex space-x-2">
+                    <a th:href="@{/actualizarNutriologo} + ${nutriologo.id}" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600">Actualizar</a>
+                    <a th:href="@{/eliminarNutriologo} + ${nutriologo.id}" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600">Eliminar</a>
+                    <a th:href="@{/consultasNutriologo{id}(id=${nutriologo.id})}" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600">Consultas</a>
+                    <a th:href="@{/nutriologoDieta/{id}(id=${nutriologo.id})}" class="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-600">Dietas</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-6 flex justify-center">
+        <a th:href="@{/formularioNutrologo}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 text-lg font-semibold">Nuevo Nutriólogo</a>
+    </div>
+</div>
+
+<footer class="bg-green-800 text-white text-center py-4 mt-10 rounded-t-lg">
+    <p>&copy; 2025 Todos los derechos reservados. Lista de Nutriólogos - NutriRecetas</p>
+</footer>
+
+</body>
+</html>
