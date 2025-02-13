@@ -1,167 +1,184 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
 }
 
 header {
-  background-color: #2e7d32;
-  color: white;
-  padding: 15px;
-  text-align: center;
+  background-color: #28a745;
+  padding: 20px 0;
 }
 
-.logo img {
-  width: 50px;
-  vertical-align: middle;
-}
-
-.logo h1 {
-  display: inline;
-  margin-left: 10px;
+header h1 {
+  color: #ffffff;
+  font-size: 2rem;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
-  text-align: center;
 }
 
 nav ul li {
   display: inline;
-  margin: 0 15px;
+  margin-right: 20px;
 }
 
 nav ul li a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
 }
 
 .introduccion {
-  text-align: center;
-  padding: 20px;
+  background-color: #ffffff;
+  padding: 30px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.introduccion h2 {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.introduccion p {
+  font-size: 1.1rem;
+  color: #6c757d;
 }
 
 .introduccion img {
-  width: 100%;
-  max-width: 600px;
+  width: 180px;
+  height: auto;
   border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.recetas {
-  padding: 20px;
+.introduccion img:hover {
+  transform: scale(1.1);
 }
 
-.lista-recetas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.recetas h2 {
+  color: #28a745;
+  font-weight: bold;
 }
 
-.receta {
-  background-color: white;
-  margin: 15px;
-  padding: 15px;
+.card {
   border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.receta img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
-.ver-receta {
-  background-color: #2e7d32;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
+.card-body {
+  background-color: #ffffff;
 }
 
-.ver-receta:hover {
-  background-color: #1b5e20;
+.card-body .card-title {
+  color: #28a745;
 }
 
-.modal-toggle {
-  display: none;
+.card-body .btn {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.card-body .btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
 }
 
 .modal {
   display: none;
   position: fixed;
-  top: 0;
+  z-index: 1000;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-toggle:checked + .modal {
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-contenido {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 30px;
+  width: 60%;
+  border-radius: 15px;
   text-align: center;
-  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .cerrar {
   position: absolute;
   top: 10px;
   right: 20px;
-  font-size: 20px;
+  font-size: 30px;
+  color: #28a745;
   cursor: pointer;
 }
 
-footer {
-  background-color: #2e7d32;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
+.cerrar:hover {
+  color: #155d27;
 }
 
-@media screen and (max-width: 768px) {
-  .lista-recetas {
-    flex-direction: column;
-    align-items: center;
-  }
+.modal h2,
+.modal h3 {
+  color: #28a745;
+  font-weight: bold;
+}
 
-  /* Estilo del botón centrado */
-  .boton-subir {
-    display: block;
-    background-color: #2e7d32;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 20px auto;
-  }
+.modal p,
+.modal ul,
+.modal ol {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
 
-  .boton-subir:hover {
-    background-color: #1b5e20;
-  }
-  .introduccion-imagenes {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    transform: scale(1.1);
-  }
+footer {
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
 
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.zoom-img {
+  width: 220px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-img:hover {
+  transform: scale(1.1);
+}
+
+.btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.modal-img {
+  max-width: 100%;  /* Asegura que la imagen no se desborde */
+  max-height: 300px;  /* Limita la altura máxima de la imagen */
+  margin: 0 auto;  /* Centra la imagen */
+  display: block;  /* Asegura que la imagen se muestre correctamente */
 }

@@ -1,6 +1,4 @@
 package com.itsqmet.nutricional.Controlador;
-
-
 import com.itsqmet.nutricional.Entidad.Dietas;
 import com.itsqmet.nutricional.Entidad.Nutriologo;
 import com.itsqmet.nutricional.Entidad.Pacientes;
@@ -11,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +21,6 @@ public class DietasControlador {
     @Autowired
     NutriologoServicio nutriologoServicio;
 
-    //Leer los autores
     @GetMapping("/dieta")
     public String listarDieta(@RequestParam(name="buscarDieta", required = false, defaultValue = "") String buscarDieta, Model model){
         List<Dietas> dieta = dietaServicio.buscarDietaNombre(buscarDieta);

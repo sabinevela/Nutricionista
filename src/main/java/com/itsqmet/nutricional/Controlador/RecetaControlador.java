@@ -1,10 +1,13 @@
 package com.itsqmet.nutricional.Controlador;
 
+import com.itextpdf.text.DocumentException;
 import com.itsqmet.nutricional.Entidad.Receta;
+import com.itsqmet.nutricional.Servicio.RecetaServicio;
 import com.itsqmet.nutricional.Repositorio.RecetaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,9 @@ public class RecetaControlador {
 
     @Autowired
     private RecetaRepositorio recetaRepositorio;
+
+    @Autowired
+    private RecetaServicio recetaServicio; // Inyección de RecetaServicio
 
     @GetMapping
     public String mostrarRecetas(Model model) {
@@ -66,5 +72,14 @@ public class RecetaControlador {
             return new ResponseEntity<>(recetaOptional.get().getImagen(), headers, HttpStatus.OK);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/recetas/pdf")
+    public ResponseEntity<byte[]> descargarPdf() throws DocumentException, IOException {
+        byte[] pdf = recetaServicio.generarPdf();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "recetas.pdf");
+        return new ResponseEntity<>(pdf, headers, HttpStatus.OK);
     }
 }
