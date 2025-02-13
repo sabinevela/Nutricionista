@@ -10,4 +10,8 @@ public class HomeControlador {
     public String mostrarIndex() {
         return "index";
     }
+    @GetMapping("/reseñas")
+    public String mostrarReseñas(){
+        return "comentarios/reseñasPacientes";
+    }
 }

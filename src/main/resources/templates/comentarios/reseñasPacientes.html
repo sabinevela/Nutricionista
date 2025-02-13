@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas - NutriRecetas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white">
+<!-- Navbar -->
+<header class="bg-green-700 text-white py-4">
+    <nav class="container mx-auto flex justify-between items-center px-4">
+        <h1 class="text-2xl font-bold">NutriRecetas</h1>
+        <ul class="flex space-x-4">
+            <li><a th:href="@{/}">Inicio</a></li>
+            <li><a th:href="@{/recetas}">Recetas</a></li>
+            <li><a th:href="@{/loginPaciente}">Iniciar Sesion</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main Section -->
+<header class="text-center py-8 bg-green-700 text-white">
+    <h1 class="text-4xl font-bold">Lo que nuestros pacientes dicen</h1>
+    <p class="mt-2 text-lg">Descubre cómo NutriRecetas ha cambiado vidas.</p>
+</header>
+
+<section class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white shadow-lg rounded-2xl p-6">
+            <p class="text-gray-700 italic">"Gracias a NutriRecetas, aprendí a comer saludable sin sacrificar el sabor. He perdido 10 kg y me siento increíble."</p>
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold">María González</h3>
+                <p class="text-sm text-gray-500">Paciente desde 2023</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white shadow-lg rounded-2xl p-6">
+            <p class="text-gray-700 italic">"El plan de comidas de NutriRecetas es muy fácil de seguir y los resultados son reales. Mi energía ha mejorado mucho."</p>
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold">Carlos Pérez</h3>
+                <p class="text-sm text-gray-500">Paciente desde 2022</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white shadow-lg rounded-2xl p-6">
+            <p class="text-gray-700 italic">"NutriRecetas me ayudó a controlar mi diabetes con recetas deliciosas y fáciles de preparar. Estoy muy agradecida."</p>
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold">Lucía Fernández</h3>
+                <p class="text-sm text-gray-500">Paciente desde 2021</p>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white shadow-lg rounded-2xl p-6">
+            <p class="text-gray-700 italic">"Nunca había disfrutado tanto de recetas saludables. NutriRecetas transformó mi forma de ver la comida."</p>
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold">Jorge Ramírez</h3>
+                <p class="text-sm text-gray-500">Paciente desde 2023</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulario para dejar reseñas -->
+<section class="container mx-auto px-4 py-12 bg-gray-100">
+    <h2 class="text-2xl font-bold text-center mb-6">Deja tu reseña</h2>
+    <form id="review-form" class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">Nombre:</label>
+            <input type="text" id="name" name="name" class="w-full p-3 border rounded-lg" placeholder="Tu nombre">
+        </div>
+        <div class="mb-4">
+            <label for="review" class="block text-gray-700 font-bold mb-2">Reseña:</label>
+            <textarea id="review" name="review" class="w-full p-3 border rounded-lg" rows="4" placeholder="Tu experiencia"></textarea>
+        </div>
+        <button type="button" id="submit-review" class="bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800">Enviar</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer class="bg-green-700 text-white py-6 mt-12">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2025 NutriRecetas. Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:info@nutrirecetas.com" class="underline">info@nutrirecetas.com</a></p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('submit-review').addEventListener('click', function() {
+        const name = document.getElementById('name').value;
+        const review = document.getElementById('review').value;
+
+        if (name && review) {
+            const reviewsContainer = document.querySelector('.grid');
+
+            const newReview = `
+                <div class="bg-white shadow-lg rounded-2xl p-6">
+                    <p class="text-gray-700 italic">"${review}"</p>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold">${name}</h3>
+                        <p class="text-sm text-gray-500">Nuevo paciente</p>
+                    </div>
+                </div>
+            `;
+
+            reviewsContainer.innerHTML += newReview;
+
+            document.getElementById('name').value = '';
+            document.getElementById('review').value = '';
+            alert('Reseña enviada exitosamente.');
+        } else {
+            alert('Por favor, completa todos los campos antes de enviar tu reseña.');
+        }
+    });
+</script>
+</body>
+</html>
