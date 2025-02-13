@@ -6,7 +6,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itsqmet.nutricional.Entidad.Pacientes;
 import com.itsqmet.nutricional.Entidad.Receta;
-
 import com.itsqmet.nutricional.Repositorio.PacienteRepositorio;
 import com.itsqmet.nutricional.Repositorio.RecetaRepositorio;
 import jakarta.transaction.Transactional;
@@ -67,32 +66,49 @@ public class RecetaServicio {
         }
     }
 
-    public byte[] generarPdf() throws DocumentException, IOException {
-        List<Receta> recetas = recetaRepositorio.findAll();
+    public byte[] generarPdfPorReceta(Long recetaId) throws DocumentException, IOException {
+        Receta receta = recetaRepositorio.findById(recetaId)
+                .orElseThrow(() -> new RuntimeException("Receta no encontrada"));
+
         Document document = new Document();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         PdfWriter.getInstance(document, baos);
         document.open();
-        document.add(new Paragraph("Lista de Recetas", FontFactory.getFont("Arial", 14, Font.BOLD)));
+        document.add(new Paragraph("Receta: " + receta.getTitulo(), FontFactory.getFont("Arial", 14, Font.BOLD)));
 
-        PdfPTable table = new PdfPTable(4);
+        PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
 
-        table.addCell(new PdfPCell(new Phrase("Título", FontFactory.getFont("Arial", 12))));
-        table.addCell(new PdfPCell(new Phrase("Ingredientes", FontFactory.getFont("Arial", 12))));
-        table.addCell(new PdfPCell(new Phrase("Pasos", FontFactory.getFont("Arial", 12))));
-        table.addCell(new PdfPCell(new Phrase("Descripcion", FontFactory.getFont("Arial", 12))));
+        table.addCell(new PdfPCell(new Phrase("Campo", FontFactory.getFont("Arial", 12))));
+        table.addCell(new PdfPCell(new Phrase("Detalle", FontFactory.getFont("Arial", 12))));
 
-        for (Receta receta : recetas) {
-            table.addCell(new PdfPCell(new Phrase(String.valueOf(receta.getTitulo()), FontFactory.getFont("Arial", 11))));
-            table.addCell(new PdfPCell(new Phrase(receta.getIngredientes(), FontFactory.getFont("Arial", 11))));
-            table.addCell(new PdfPCell(new Phrase(receta.getPasos(), FontFactory.getFont("Arial", 11))));
-            table.addCell(new PdfPCell(new Phrase(receta.getDescripcion(), FontFactory.getFont("Arial", 11))));
+        table.addCell(new PdfPCell(new Phrase("Título", FontFactory.getFont("Arial", 11))));
+        table.addCell(new PdfPCell(new Phrase(receta.getTitulo(), FontFactory.getFont("Arial", 11))));
+
+        table.addCell(new PdfPCell(new Phrase("Ingredientes", FontFactory.getFont("Arial", 11))));
+        table.addCell(new PdfPCell(new Phrase(receta.getIngredientes(), FontFactory.getFont("Arial", 11))));
+
+        table.addCell(new PdfPCell(new Phrase("Pasos", FontFactory.getFont("Arial", 11))));
+        table.addCell(new PdfPCell(new Phrase(receta.getPasos(), FontFactory.getFont("Arial", 11))));
+
+        table.addCell(new PdfPCell(new Phrase("Descripción", FontFactory.getFont("Arial", 11))));
+        table.addCell(new PdfPCell(new Phrase(receta.getDescripcion(), FontFactory.getFont("Arial", 11))));
+
+        if (receta.getImagen() != null) {
+            Image img = Image.getInstance(receta.getImagen());
+            img.scaleAbsolute(150, 150); // Ajustamos el tamaño a 150x150 px
+            PdfPCell imageCell = new PdfPCell(img, true);
+            imageCell.setColspan(2);
+            imageCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            imageCell.setPadding(10); // Agregamos un pequeño margen
+            imageCell.setBorder(Rectangle.NO_BORDER); // Eliminamos el borde de la celda
+            table.addCell(imageCell);
         }
 
         document.add(table);
         document.close();
         return baos.toByteArray();
     }
+
 }
