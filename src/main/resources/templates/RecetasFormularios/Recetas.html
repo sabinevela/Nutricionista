@@ -8,24 +8,19 @@
   <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
   <title>Recetas Saludables - NutriRecetas</title>
 </head>
-
 <body class="bg-gray-100 text-gray-900">
-
-<!-- Navbar -->
 <nav id="navbar" class="navbar">
   <h1 class="logo">
     <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas" class="logo-img">
     NutriRecetas
   </h1>
   <ul class="nav-links">
-    <li><a href="#">Inicio</a></li>
+    <li><a th:href="@{/}">Inicio</a></li>
     <li><a th:href="@{/nosotros}">Nosotros</a></li>
     <li><a th:href="@{/formularioConsulta}">Consultas</a></li>
     <li><a th:href="@{/formularioNutrologo}">Registro Nutriologo</a></li>
   </ul>
 </nav>
-
-<!-- Header Section -->
 <header class="relative w-full h-96 flex items-center justify-center text-center text-white">
   <img th:src="@{img/imagen8.jpg}" alt="Imagen de comida saludable" class="w-full h-full object-cover">
   <div class="absolute bg-black bg-opacity-50 w-full h-full flex flex-col items-center justify-center p-6">
@@ -33,12 +28,9 @@
     <p class="mt-4 text-lg">Nutre tu cuerpo con opciones deliciosas y equilibradas.</p>
   </div>
 </header>
-
-<!-- Recetas Section -->
 <section class="p-12">
   <h3 class="text-4xl font-semibold text-center mb-8">Recetas Populares</h3>
   <div class="grid md:grid-cols-3 gap-8">
-    <!-- Receta 1 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen9.jpg" alt="Receta 1" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal1')">
@@ -47,8 +39,6 @@
         <p class="text-gray-600 text-center">Una mezcla rica en proteínas y fibra, ideal para el almuerzo.</p>
       </div>
     </div>
-
-    <!-- Receta 2 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen10r.jpg" alt="Receta 2" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal2')">
@@ -57,8 +47,6 @@
         <p class="text-gray-600 text-center">Ideal para una comida reconfortante y llena de nutrientes.</p>
       </div>
     </div>
-
-    <!-- Receta 3 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen11r.jpg" alt="Receta 3" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal3')">
@@ -67,8 +55,6 @@
         <p class="text-gray-600 text-center">Fresco y lleno de antioxidantes para revitalizar tu día.</p>
       </div>
     </div>
-
-    <!-- Receta 4 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen5.jpg" alt="Receta 4" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal4')">
@@ -77,8 +63,6 @@
         <p class="text-gray-600 text-center">Energía y sabor en cada bocado.</p>
       </div>
     </div>
-
-    <!-- Receta 5 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen12r.jpg" alt="Receta 5" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal5')">
@@ -87,8 +71,6 @@
         <p class="text-gray-600 text-center">Fresca y nutritiva para limpiar tu organismo.</p>
       </div>
     </div>
-
-    <!-- Receta 6 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen13r.jpg" alt="Receta 6" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal6')">
@@ -97,8 +79,6 @@
         <p class="text-gray-600 text-center">Ideal para después del ejercicio.</p>
       </div>
     </div>
-
-    <!-- Receta 7 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen14r.jpg" alt="Receta 7" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal7')">
@@ -107,8 +87,6 @@
         <p class="text-gray-600 text-center">Rica en fibra y perfecta para el desayuno.</p>
       </div>
     </div>
-
-    <!-- Receta 8 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen15r.jpg" alt="Receta 8" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal8')">
@@ -117,8 +95,6 @@
         <p class="text-gray-600 text-center">Plato rico en Omega 3 y proteínas.</p>
       </div>
     </div>
-
-    <!-- Receta 9 -->
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
       <img src="img/imagen16r.jpg" alt="Receta 9" class="w-full h-48 object-cover cursor-pointer"
            onclick="openModal('modal9')">
@@ -129,9 +105,6 @@
     </div>
   </div>
 </section>
-
-<!-- Modales de Recetas -->
-<!-- Modal 1 -->
 <div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Ensalada de Quinoa</h4>
@@ -148,8 +121,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal1')">Cerrar</button>
   </div>
 </div>
-
-<!-- Modal 2 -->
 <div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Sopa de Lentejas</h4>
@@ -166,8 +137,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal2')">Cerrar</button>
   </div>
 </div>
-
-<!-- Modal 3 -->
 <div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Batido Verde</h4>
@@ -184,8 +153,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal3')">Cerrar</button>
   </div>
 </div>
-
-<!-- Modal 4 -->
 <div id="modal4" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Tostadas de Aguacate</h4>
@@ -202,8 +169,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal4')">Cerrar</button>
   </div>
 </div>
-
-<!-- Modal 5 -->
 <div id="modal5" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Ensalada Detox</h4>
@@ -220,8 +185,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal5')">Cerrar</button>
   </div>
 </div>
-
-<!-- Modal 6 -->
 <div id="modal6" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Batido Energético</h4>
@@ -238,7 +201,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal6')">Cerrar</button>
   </div>
 </div>
-<!-- Modal 7 -->
 <div id="modal7" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Avena Nocturna</h4>
@@ -255,7 +217,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal7')">Cerrar</button>
   </div>
 </div>
-<!-- Modal 8 -->
 <div id="modal8" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Salmón al Horno</h4>
@@ -272,7 +233,6 @@
     <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal8')">Cerrar</button>
   </div>
 </div>
-<!-- Modal 9 -->
 <div id="modal9" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
   <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
     <h4 class="text-xl font-semibold text-center">Pasta Integral</h4>
@@ -319,9 +279,6 @@
         </span>
   </div>
 </footer>
-
-
-
 <script th:src="@{/js/navjs.js}"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 </body>
