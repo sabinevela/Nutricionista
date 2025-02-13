@@ -1,115 +1,328 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recetas - NutriRecetas</title>
-  <link rel="stylesheet" th:href="@{/css/estilosRecetas.css}">
+  <link rel="stylesheet" th:href="@{/Css/estilosnav.css}">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+  <title>Recetas Saludables - NutriRecetas</title>
 </head>
-<body>
-<header>
-  <div class="logo">
-    <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas">
-    <h1>NutriRecetas</h1>
+
+<body class="bg-gray-100 text-gray-900">
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar">
+  <h1 class="logo">
+    <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas" class="logo-img">
+    NutriRecetas
+  </h1>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a th:href="@{/nosotros}">Nosotros</a></li>
+    <li><a th:href="@{/formularioConsulta}">Consultas</a></li>
+    <li><a th:href="@{/formularioNutrologo}">Registro Nutriologo</a></li>
+  </ul>
+</nav>
+
+<!-- Header Section -->
+<header class="relative w-full h-96 flex items-center justify-center text-center text-white">
+  <img th:src="@{img/imagen8.jpg}" alt="Imagen de comida saludable" class="w-full h-full object-cover">
+  <div class="absolute bg-black bg-opacity-50 w-full h-full flex flex-col items-center justify-center p-6">
+    <h2 class="text-5xl font-bold">Recetas Saludables para Tu Bienestar</h2>
+    <p class="mt-4 text-lg">Nutre tu cuerpo con opciones deliciosas y equilibradas.</p>
   </div>
-  <nav>
-    <ul>
-      <li><a href="/">Inicio</a></li>
-      <li><a href="/recetas">Recetas</a></li>
-      <li><a href="/recetas/subir">Subir Receta</a></li>
-      <li><a href="#">Contacto</a></li>
-    </ul>
-  </nav>
 </header>
-<main>
-  <section class="introduccion">
-    <h2>¿Por qué es importante una alimentación saludable?</h2>
-    <p>Comer bien mejora tu salud, aumenta tu energía y fortalece tu sistema inmunológico. En NutriRecetas, te ofrecemos opciones deliciosas y saludables para que disfrutes sin culpa.</p>
-    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
-    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
-    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
-    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
-    <img th:src="@{/img/ensaladaprinci.jpg}" alt="Alimentación saludable" style="width: 200px; height: auto;" class="zoom-img">
-  </section>
-  <section class="recetas">
-    <h2>Recetas Disponibles</h2>
-    <div class="lista-recetas">
-      <article th:each="receta : ${recetas}" class="receta">
-        <img th:src="@{/recetas/imagen/{id}(id=${receta.id})}" alt="Imagen de la receta">
-        <h3 th:text="${receta.titulo}"></h3>
-        <button th:onclick="|mostrarModal('modal-${receta.id}')|">Ver Receta</button>
-      </article>
+
+<!-- Recetas Section -->
+<section class="p-12">
+  <h3 class="text-4xl font-semibold text-center mb-8">Recetas Populares</h3>
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Receta 1 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen9.jpg" alt="Receta 1" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal1')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Ensalada de Quinoa</h4>
+        <p class="text-gray-600 text-center">Una mezcla rica en proteínas y fibra, ideal para el almuerzo.</p>
+      </div>
     </div>
-    <a th:href="@{/recetas/subir}">Subir Receta</a>
-  </section>
-</main>
-<div th:each="receta : ${recetas}" th:id="'modal-' + ${receta.id}" class="modal">
-  <div class="modal-contenido">
-    <span class="cerrar" th:onclick="|cerrarModal('modal-${receta.id}')|">&times;</span>
-    <h2 th:text="${receta.titulo}"></h2>
-    <p th:text="${receta.descripcion}"></p>
-    <h3>Ingredientes</h3>
-    <ul>
-      <li th:each="ingrediente : ${#strings.arraySplit(receta.ingredientes, ',')}" th:text="${ingrediente}"></li>
+
+    <!-- Receta 2 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen10r.jpg" alt="Receta 2" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal2')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Sopa de Lentejas</h4>
+        <p class="text-gray-600 text-center">Ideal para una comida reconfortante y llena de nutrientes.</p>
+      </div>
+    </div>
+
+    <!-- Receta 3 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen11r.jpg" alt="Receta 3" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal3')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Batido Verde</h4>
+        <p class="text-gray-600 text-center">Fresco y lleno de antioxidantes para revitalizar tu día.</p>
+      </div>
+    </div>
+
+    <!-- Receta 4 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen5.jpg" alt="Receta 4" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal4')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Tostadas de Aguacate</h4>
+        <p class="text-gray-600 text-center">Energía y sabor en cada bocado.</p>
+      </div>
+    </div>
+
+    <!-- Receta 5 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen12r.jpg" alt="Receta 5" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal5')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Ensalada Detox</h4>
+        <p class="text-gray-600 text-center">Fresca y nutritiva para limpiar tu organismo.</p>
+      </div>
+    </div>
+
+    <!-- Receta 6 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen13r.jpg" alt="Receta 6" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal6')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Batido Energético</h4>
+        <p class="text-gray-600 text-center">Ideal para después del ejercicio.</p>
+      </div>
+    </div>
+
+    <!-- Receta 7 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen14r.jpg" alt="Receta 7" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal7')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Avena Nocturna</h4>
+        <p class="text-gray-600 text-center">Rica en fibra y perfecta para el desayuno.</p>
+      </div>
+    </div>
+
+    <!-- Receta 8 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen15r.jpg" alt="Receta 8" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal8')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Salmón al Horno</h4>
+        <p class="text-gray-600 text-center">Plato rico en Omega 3 y proteínas.</p>
+      </div>
+    </div>
+
+    <!-- Receta 9 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="img/imagen16r.jpg" alt="Receta 9" class="w-full h-48 object-cover cursor-pointer"
+           onclick="openModal('modal9')">
+      <div class="p-4 flex flex-col items-center">
+        <h4 class="text-2xl font-semibold">Pasta Integral</h4>
+        <p class="text-gray-600 text-center">Comida ligera y saludable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modales de Recetas -->
+<!-- Modal 1 -->
+<div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Ensalada de Quinoa</h4>
+    <p class="mt-2 text-center">Una mezcla rica en proteínas y fibra para un almuerzo saludable.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 350 Kcal</li>
+      <li>Proteínas: 15g</li>
+      <li>Carbohidratos: 40g</li>
+      <li>Grasas: 12g</li>
     </ul>
-    <h3>Pasos</h3>
-    <ol>
-      <li th:each="paso : ${#strings.arraySplit(receta.pasos, '. ')}" th:text="${paso}"></li>
-    </ol>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Pacientes con necesidad de controlar su peso, personas con dietas vegetarianas o veganas, y aquellos buscando mejorar su digestión.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal1')">Cerrar</button>
   </div>
 </div>
-<footer>
-  <p>&copy; 2025 NutriRecetas - Comer sano es vivir mejor.</p>
-</footer>
+
+<!-- Modal 2 -->
+<div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Sopa de Lentejas</h4>
+    <p class="mt-2 text-center">Una receta reconfortante y llena de proteínas vegetales.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 300 Kcal</li>
+      <li>Proteínas: 20g</li>
+      <li>Carbohidratos: 40g</li>
+      <li>Grasas: 7g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Pacientes con anemia, personas buscando mejorar su salud digestiva y aquellos que necesitan una fuente de proteínas vegetales.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal2')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Batido Verde</h4>
+    <p class="mt-2 text-center">Fresco, antioxidante y lleno de nutrientes.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 150 Kcal</li>
+      <li>Proteínas: 5g</li>
+      <li>Carbohidratos: 30g</li>
+      <li>Grasas: 2g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Ideal para personas buscando detoxificar su organismo y personas con un estilo de vida activo.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal3')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Tostadas de Aguacate</h4>
+    <p class="mt-2 text-center">Un desayuno lleno de energía y antioxidantes.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 350 Kcal</li>
+      <li>Proteínas: 6g</li>
+      <li>Carbohidratos: 32g</li>
+      <li>Grasas: 25g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Ideal para personas buscando energía rápida y saludable, o para aquellos con un estilo de vida activo.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal4')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Modal 5 -->
+<div id="modal5" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Ensalada Detox</h4>
+    <p class="mt-2 text-center">Ideal para limpiar tu organismo y disfrutar de una comida ligera.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 200 Kcal</li>
+      <li>Proteínas: 6g</li>
+      <li>Carbohidratos: 30g</li>
+      <li>Grasas: 7g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Ideal para personas que deseen detoxificar su cuerpo y para pacientes con problemas digestivos.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal5')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Modal 6 -->
+<div id="modal6" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Batido Energético</h4>
+    <p class="mt-2 text-center">Recarga tu energía de forma saludable.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 250 Kcal</li>
+      <li>Proteínas: 15g</li>
+      <li>Carbohidratos: 30g</li>
+      <li>Grasas: 10g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Ideal para personas que necesitan un impulso de energía post-entrenamiento o personas activas.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal6')">Cerrar</button>
+  </div>
+</div>
+<!-- Modal 7 -->
+<div id="modal7" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Avena Nocturna</h4>
+    <p class="mt-2 text-center">Una mezcla rica en proteínas y fibra para un almuerzo saludable.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 350 Kcal</li>
+      <li>Proteínas: 15g</li>
+      <li>Carbohidratos: 40g</li>
+      <li>Grasas: 12g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Pacientes con necesidad de controlar su peso, personas con dietas vegetarianas o veganas, y aquellos buscando mejorar su digestión.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal7')">Cerrar</button>
+  </div>
+</div>
+<!-- Modal 8 -->
+<div id="modal8" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Salmón al Horno</h4>
+    <p class="mt-2 text-center">Una mezcla rica en proteínas y fibra para un almuerzo saludable.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 250 Kcal</li>
+      <li>Proteínas: 20g</li>
+      <li>Carbohidratos: 20g</li>
+      <li>Grasas: 14g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Pacientes con necesidad de controlar su peso, personas con dietas, y aquellos buscando mejorar su digestión.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal8')">Cerrar</button>
+  </div>
+</div>
+<!-- Modal 9 -->
+<div id="modal9" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden modal">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96 flex flex-col items-center">
+    <h4 class="text-xl font-semibold text-center">Pasta Integral</h4>
+    <p class="mt-2 text-center">Una mezcla rica en proteínas y fibra para un almuerzo saludable.</p>
+    <h5 class="mt-4 font-semibold">Información Nutricional:</h5>
+    <ul class="text-gray-600 text-center">
+      <li>Calorías: 350 Kcal</li>
+      <li>Proteínas: 13g</li>
+      <li>Carbohidratos: 40g</li>
+      <li>Grasas: 18g</li>
+    </ul>
+    <h5 class="mt-4 font-semibold">Recomendado para:</h5>
+    <p class="text-gray-600 text-center">Pacientes con necesidad de controlar su peso, personas con dietas vegetarianas o veganas, y aquellos buscando mejorar su digestión.</p>
+    <button class="mt-6 bg-red-500 text-white px-4 py-2 rounded block mx-auto" onclick="closeModal('modal9')">Cerrar</button>
+  </div>
+</div>
+
 <script>
-  function mostrarModal(id) {
-    document.getElementById(id).style.display = "block";
+  function openModal(id) {
+      document.getElementById(id).classList.remove("hidden");
   }
-  function cerrarModal(id) {
-    document.getElementById(id).style.display = "none";
+
+  function closeModal(id) {
+      document.getElementById(id).classList.add("hidden");
   }
-  window.onclick = function(event) {
-    const modales = document.getElementsByClassName("modal");
-    for (let modal of modales) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  };
 </script>
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
-  }
-  .modal-contenido {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    width: 50%;
-    border-radius: 10px;
-    text-align: center;
-  }
-  .cerrar {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .zoom-img {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-  }
-  .zoom-img:hover {
-    transform: scale(1.1);
-  }
-</style>
+
+<footer class="footer rounded-lg shadow-sm dark:bg-gray-900 m-4">
+  <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+        <img th:src="@{/img/Logo.png}" class="h-8" alt="NutriRecetas Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NutriRecetas</span>
+      </a>
+      <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+        <li><a href="#" class="hover:underline me-4 md:me-6">Inicio</a></li>
+        <li><a href="#" class="hover:underline me-4 md:me-6">Recetas</a></li>
+        <li><a href="#" class="hover:underline me-4 md:me-6">Consejos</a></li>
+      </ul>
+    </div>
+    <hr class="my-6 border-gray-300 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © 2025 <a href="#" class="hover:underline">NutriRecetas™</a>. Todos los derechos reservados.
+        </span>
+  </div>
+</footer>
+
+
+
+<script th:src="@{/js/navjs.js}"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
