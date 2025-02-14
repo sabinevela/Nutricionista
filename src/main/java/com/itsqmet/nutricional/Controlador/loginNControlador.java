@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class loginNControlador {
     @GetMapping("/loginNutri")
-    public String mostrarloginNutriologo(Model model) {
-        model.addAttribute("nutriologo", new Nutriologo()); // Agrega un objeto Usuario al modelo
+    public String mostrarloginNutriologo() {
         return "login/loginNutriologo";
     }
 }

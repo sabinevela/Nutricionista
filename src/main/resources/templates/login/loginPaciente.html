@@ -8,6 +8,9 @@
   <link rel="stylesheet" th:href="@{Css/loginpaciente.css}">
   <title>Inicio de Sesión - NutriVida</title>
 </head>
+<div th:if="${param.logout}">
+  <p>!Has cerrado sesion exitosamente!</p>
+</div>
 <body class="nutrivida-body">
 <nav class="nutrivida-nav navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
@@ -42,14 +45,14 @@
   <div class="nutrivida-form-container form-container">
     <h2 class="nutrivida-h2_1">Inicio de Sesión</h2>
     <h2 class="nutrivida-h2_1">Pacientes</h2>
-    <form>
+    <form th:action="@{/login}" method="post">
       <div>
         <label for="email" class="nutrivida-form-label form-label">Correo Electrónico:</label>
-        <input type="email" id="email" placeholder="Correo Electrónico" required />
+        <input type="email" id="email" name="username" placeholder="Correo Electrónico" required />
       </div>
       <div>
         <label for="password" class="nutrivida-form-label form-label">Contraseña:</label>
-        <input type="password" id="password" placeholder="Contraseña" required />
+        <input type="password" id="password" name="password" placeholder="Contraseña" required />
       </div>
       <div>
         <button type="submit" class="nutrivida-submit-btn">Iniciar Sesión</button>

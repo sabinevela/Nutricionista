@@ -75,7 +75,7 @@
             <br>
             <select id="nutriologo" th:field="*{nutriologo.id}" class="form-select">
               <option value="">Seleccione un Nutrologo</option>
-              <option th:each="nutriologo : ${nutriologo}"
+              <option th:each="nutriologo : ${nutrologo}"
                       th:value="${nutriologo.id}"
                       th:text="${nutriologo.nombre}"></option>
             </select>

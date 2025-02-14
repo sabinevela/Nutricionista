@@ -3,6 +3,7 @@ package com.itsqmet.nutricional.Entidad;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,9 +24,7 @@ public class Pacientes {
     private String email;
 
     @NotNull(message = "La contraseña es obligatoria")
-    @Size(min = 8, max = 15, message = "La contraseña debe tener entre 8 y 15 caracteres")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,15}",
-            message = "La contraseña debe tener al menos una mayúscula, una minúscula, un número y un carácter especial")
+    @Size(min = 8, max = 255, message = "La contraseña debe tener entre 8 y 15 caracteres")
     private String password;
 
     public String getPassword() {
@@ -33,8 +32,10 @@ public class Pacientes {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
     }
+
 
     @NotBlank(message = "El teléfono es obligatorio")
     @Size(min = 8, max = 15, message = "El teléfono debe tener entre 8 y 15 caracteres")
@@ -67,6 +68,16 @@ public class Pacientes {
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     private List<Receta> receta = new ArrayList<>();
 
+    @Column(nullable = false)
+    private String role = "PACIENTE";
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public List<Receta> getReceta() {
         return receta;

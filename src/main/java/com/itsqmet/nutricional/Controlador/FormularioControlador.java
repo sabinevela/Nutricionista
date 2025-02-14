@@ -43,6 +43,11 @@ public class FormularioControlador {
         return "listas/listaPaciente";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "datosguardados/dashboard";
+    }
+
     @GetMapping("/formulario")
     public String mostrarFormurario(Model model){
         model.addAttribute("paciente", new Pacientes());
@@ -52,7 +57,7 @@ public class FormularioControlador {
     @PostMapping("/registrar")
     public String insertarPaciente(Pacientes paciente){
         pacienteServicio.guardarPaciente(paciente);
-        return "redirect:/paciente";
+        return "login/loginPaciente";
     }
 
     @GetMapping("/actualizar/{id}")

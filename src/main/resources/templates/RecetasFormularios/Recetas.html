@@ -84,7 +84,6 @@
       <li th:each="paso : ${#strings.arraySplit(receta.pasos, '. ')}" th:text="${paso}" class="list-group-item"></li>
     </ol>
     <a th:href="@{/recetas/recetas/pdf/{id}(id=${receta.id})}" class="btn btn-primary" target="_blank">Descargar PDF</a>
-
   </div>
 </div>
 

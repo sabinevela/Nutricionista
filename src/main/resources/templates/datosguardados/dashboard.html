@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/Css/estilosnav.css}">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+  <title>Dashboard Paciente</title>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar">
+  <h1 class="logo">
+    <img th:src="@{/img/Logo.png}" alt="Logo NutriRecetas" class="logo-img">
+    NutriRecetas
+  </h1>
+  <ul class="nav-links">
+    <li><a th:href="@{/nosotros}">Nosotros</a></li>
+    <li><a th:href="@{/formularioConsulta}">Consultas</a></li>
+    <li><a th:href="@{/reseñas}">Reseñas</a></li>
+  </ul>
+  <div class="flex justify-center space-x-4">
+    <a th:href="@{/formulario}" class="bg-green-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-600 w-full sm:w-auto">
+      Registrate
+    </a>
+    <a th:href="@{/loginPaciente}" class="bg-green-500 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-green-600 w-full sm:w-auto">
+      Inicia Sesión
+    </a>
+  </div>
+</nav>
+
+<!-- Contenido Principal -->
+<section class="flex flex-col items-center justify-center min-h-screen p-6">
+  <h1 class="text-4xl font-bold text-center mb-6">Bienvenido, Paciente</h1>
+
+  <h2 class="text-2xl font-semibold text-center mb-8">Opciones Disponibles</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <a th:href="@{/recetas}" class="bg-green-500 text-white text-center px-6 py-4 rounded-lg shadow-md hover:bg-green-600 transition">
+      Ver Recetas
+    </a>
+    <a th:href="@{/consultas}" class="bg-green-500 text-white text-center px-6 py-4 rounded-lg shadow-md hover:bg-green-600 transition">
+      Ver Consultas
+    </a>
+    <a th:href="@{/formularioConsulta}" class="bg-green-500 text-white text-center px-6 py-4 rounded-lg shadow-md hover:bg-green-600 transition">
+      Registrar Consulta
+    </a>
+    <form th:action="@{/logout}" method="post" class="w-full">
+      <button type="submit" class="w-full bg-red-500 text-white px-6 py-4 rounded-lg shadow-md hover:bg-red-600 transition">
+        Cerrar Sesión
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer rounded-lg shadow-sm dark:bg-gray-900 m-4">
+  <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+        <img th:src="@{/img/Logo.png}" class="h-8" alt="NutriRecetas Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NutriRecetas</span>
+      </a>
+      <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+        <li><a href="#" class="hover:underline me-4 md:me-6">Inicio</a></li>
+        <li><a href="#" class="hover:underline me-4 md:me-6">Recetas</a></li>
+        <li><a href="#" class="hover:underline me-4 md:me-6">Consejos</a></li>
+      </ul>
+    </div>
+    <hr class="my-6 border-gray-300 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            © 2025 <a href="#" class="hover:underline">NutriRecetas™</a>. Todos los derechos reservados.
+        </span>
+  </div>
+</footer>
+
+<script th:src="@{/js/navjs.js}"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

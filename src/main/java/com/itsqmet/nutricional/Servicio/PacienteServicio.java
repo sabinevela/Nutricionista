@@ -8,14 +8,21 @@ import com.itsqmet.nutricional.Repositorio.PacienteRepositorio;
 import com.itsqmet.nutricional.Repositorio.RecetaRepositorio;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @Service
-public class PacienteServicio {
+public class PacienteServicio implements UserDetailsService {
     @Autowired
     PacienteRepositorio pacienteRepositorio;
 
@@ -57,6 +64,19 @@ public class PacienteServicio {
     @Transactional
     public List<Receta> obtenerRecetaPorTitulo(String titulo) {
         return recetaRepositorio.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Pacientes paciente = pacienteRepositorio.findByEmail(email);
+        if (paciente == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado");
+        }
+
+        return User.withUsername(paciente.getEmail())
+                .password(paciente.getPassword())
+                .roles(paciente.getRole().toUpperCase())
+                .build();
     }
 
 }
